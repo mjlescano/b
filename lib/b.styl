@@ -1,0 +1,61 @@
+b-container()
+  // Clearfix
+  &:after
+    content: ''
+    display: table
+    clear: both
+
+b-span($span = 1 of 12,
+       $gutter = false,
+       $width = 100%,
+       $direction = ltr,
+       $fallback-width = false,
+       $fallback-gutter = false)
+
+  $amount = $span[0]
+  $columns = $span[2]
+
+  if $direction == ltr
+    float: left
+  else if $direction == rtl
+    float: right
+
+  if $fallback-width
+    $fallback-span-width = $fallback-width / $columns * $amount
+
+    if !$fallback-gutter
+      $fallback-gutter = $gutter
+
+    if !$fallback-gutter
+      width: $fallback-span-width
+      margin-left: 0
+      margin-right: 0
+    else
+      width: $fallback-span-width - $fallback-gutter
+      margin-left: $fallback-gutter / 2
+      margin-right: $fallback-gutter / 2
+
+  if $width
+    $span-width = $width / $columns * $amount
+
+    if !$gutter
+      width: 'calc(%s)' % $span-width
+      margin-left: calc(0px)
+      margin-right: calc(0px)
+    else
+      $extra-gut = abs($gutter / $columns * $amount)
+      width: 'calc(%s + %s)' % ($span-width ($extra-gut - $gutter))
+      if $direction == ltr
+        margin-left: calc(0px)
+        margin-right: 'calc(%s)' % $gutter
+      else if $direction == rtl
+        margin-right: calc(0px)
+        margin-left: 'calc(%s)' % $gutter
+
+b-omega($direction = ltr)
+  if $direction == ltr
+    clear: right
+    margin-right: calc(0px)
+  else
+    clear: left
+    margin-left: calc(0px)
