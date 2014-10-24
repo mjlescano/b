@@ -1,7 +1,7 @@
 b
 =
 
-CSS Minimalistic Grid - SCSS, Styl, LESS versions
+CSS Minimalistic Grid
 
 
 TODOs
