@@ -1,3 +1,7 @@
+@function b-direction($direction: ltr) {
+  @return if($direction == rtl, right left, left right);
+}
+
 @mixin b-container {
   // Clearfix
   &:after {
@@ -17,11 +21,9 @@
   $amount: nth($span, 1);
   $columns: nth($span, 3);
 
-  @if $direction == ltr {
-    float: left;
-  } @else if $direction == rtl {
-    float: right;
-  }
+  $dir: b-direction($direction);
+
+  float: nth($dir, 1);
 
   @if $fallback-width {
     $fallback-span-width: $fallback-width / $columns * $amount;
@@ -32,16 +34,12 @@
 
     @if $fallback-gutter == false {
       width: $fallback-span-width;
-      margin: {
-        left: 0;
-        right: 0;
-      }
+      margin-left: 0;
+      margin-right: 0;
     } @else {
       width: $fallback-span-width - $fallback-gutter;
-      margin: {
-        left: $fallback-gutter / 2;
-        right: $fallback-gutter / 2;
-      }
+      margin-left: $fallback-gutter / 2;
+      margin-right: $fallback-gutter / 2;
     }
   }
 
@@ -50,35 +48,21 @@
 
     @if $gutter == false {
       width: calc(#{$span-width});
-      margin: {
-        left: calc(0px);
-        right: calc(0px);
-      }
+      margin-left: calc(0px);
+      margin-right: calc(0px);
     } @else {
       $extra-gut: abs($gutter / $columns * $amount);
       width: calc(#{$span-width} + #{$extra-gut - $gutter});
-      @if $direction == ltr {
-        margin: {
-          left: calc(0px);
-          right: calc(#{$gutter});
-        }
-      } @else if $direction == rtl {
-        margin: {
-          right: calc(0px);
-          left: calc(#{$gutter});
-        }
-      }
+      margin-#{nth($dir, 1)}: calc(0px);
+      margin-#{nth($dir, 2)}: calc(#{$gutter});
     }
   }
 
 }
 
 @mixin b-omega($direction: ltr) {
-  @if $direction == ltr {
-    clear: right;
-    margin-right: calc(0px);
-  } @else if $direction == rtl {
-    clear: left;
-    margin-left: calc(0px);
-  }
+  $dir: b-direction($direction);
+
+  clear: nth($dir, 2)\9; // =< IE8
+  margin-#{nth($dir, 2)}: calc(0px);
 }

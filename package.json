@@ -1,0 +1,31 @@
+{
+  "name": "b-grid",
+  "version": "0.0.1",
+  "description": "Minimalistic Semantic Grid",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mjlescano/b.git"
+  },
+  "keywords": [
+    "b",
+    "grid",
+    "scss",
+    "styl",
+    "less",
+    "css",
+    "layout"
+  ],
+  "author": "Matías Lescano (https://github.com/mjlescano)",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/mjlescano/b/issues"
+  },
+  "homepage": "https://github.com/mjlescano/b",
+  "devDependencies": {
+    "gulp": "~3.8.10"
+  }
+}
