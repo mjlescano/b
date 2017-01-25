@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/mjlescano/b",
   "devDependencies": {
-    "gulp": "~3.8.10"
+    "gulp": "~3.9.1"
   }
 }
